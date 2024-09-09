@@ -94,3 +94,4 @@ if st.button("开始计算"):
     for i in range(0, st.session_state.yarns_count):
         st.write(f"纱线{i + 1}支数：" + st.session_state.yarns_details[i].cal_staple())
         st.write(f"纱线{i + 1}旦数：" + st.session_state.yarns_details[i].cal_denier())
+        st.markdown("\n\n")

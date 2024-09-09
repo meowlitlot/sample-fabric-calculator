@@ -23,11 +23,11 @@ col1.markdown("##### 克重")
 
 if col1.checkbox("是否已有克重？", value=False):
     st.session_state.is_weight_already = True
-    st.session_state.sample_fabric.fabric_weight = col1.number_input("请输入克重（GSM）：")
+    st.session_state.sample_fabric.fabric_weight = col1.number_input("请输入克重（GSM）：", min_value=0.)
 else:
     st.session_state.is_weight_already = False
-    st.session_state.sample_fabric.length = col1.number_input("请输入长（cm）：")
-    st.session_state.sample_fabric.width = col1.number_input("请输入宽（cm）：")
+    st.session_state.sample_fabric.length = col1.number_input("请输入长（cm）：", min_value=0.)
+    st.session_state.sample_fabric.width = col1.number_input("请输入宽（cm）：", min_value=0.)
     st.session_state.sample_fabric.weight = col1.number_input("请输入称重（g）：", format="%.3f")
 
 col1.divider()
@@ -35,14 +35,14 @@ col1.markdown("##### 密度")
 
 if col1.checkbox("是否需要纵密？", value=False):
     st.session_state.is_y_density_needed = True
-    st.session_state.sample_fabric.density_x_count = col1.number_input("请输入针数：")
-    st.session_state.sample_fabric.density_x_length = col1.number_input("请输入横向长度（cm）：")
-    st.session_state.sample_fabric.density_y_count = col1.number_input("请输入路数：")
+    st.session_state.sample_fabric.density_x_count = col1.number_input("请输入针数：", min_value=0)
+    st.session_state.sample_fabric.density_x_length = col1.number_input("请输入横向长度（cm）：", min_value=0.)
+    st.session_state.sample_fabric.density_y_count = col1.number_input("请输入路数：", min_value=0)
     st.session_state.sample_fabric.density_y_length = col1.number_input("请输入纵向长度（cm）：")
 else:
     st.session_state.is_y_density_needed = False
-    st.session_state.sample_fabric.density_x_count = col1.number_input("请输入针数：")
-    st.session_state.sample_fabric.density_x_length = col1.number_input("请输入横向长度（cm）：")
+    st.session_state.sample_fabric.density_x_count = col1.number_input("请输入针数：", min_value=0)
+    st.session_state.sample_fabric.density_x_length = col1.number_input("请输入横向长度（cm）：", min_value=0.)
 
 col1.divider()
 col1.markdown("##### 纱线")
@@ -55,19 +55,20 @@ for i in range(0, st.session_state.yarns_count):
 
 col2.divider()
 col2.markdown("##### 线长")
-st.session_state.yarn_raw_count = col2.number_input("请输入针数：", min_value=1, max_value=80, value=50)
+st.session_state.yarn_raw_count = col2.number_input("请输入针数：", min_value=1, value=50)
 
 for i in range(0, st.session_state.yarns_count):
-    st.session_state.yarns_details[i].raw_length = col2.number_input(f"请输入纱线{i + 1}测量长度（cm）:", min_value=0.1)
+    st.session_state.yarns_details[i].raw_length = col2.number_input(f"请输入纱线{i + 1}测量长度（cm）:", min_value=0.)
     st.session_state.yarns_details[i].raw_count = st.session_state.yarn_raw_count
 
 col2.divider()
 col2.markdown("##### 纱支")
 for i in range(0, st.session_state.yarns_count):
     st.session_state.yarns_details[i].cal_length = col2.number_input(f"请输入纱线{i + 1}纱支测量长度（cm）:",
-                                                                     min_value=0.1)
-    st.session_state.yarns_details[i].cal_count = col2.number_input(f"请输入纱线{i + 1}测量根数:")
-    st.session_state.yarns_details[i].cal_weight = col2.number_input(f"请输入纱线{i + 1}测量重量（g）:", format="%.3f")
+                                                                     min_value=0.)
+    st.session_state.yarns_details[i].cal_count = col2.number_input(f"请输入纱线{i + 1}测量根数:", min_value=0)
+    st.session_state.yarns_details[i].cal_weight = col2.number_input(f"请输入纱线{i + 1}测量重量（g）:", format="%.3f",
+                                                                     min_value=0.)
     col2.divider()
 
 st.divider()

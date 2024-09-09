@@ -6,7 +6,7 @@ class YarnDetail:
     cal_weight: float = 0
 
     def cal_line_length(self):
-            return f"{self.raw_length}cm/{self.raw_count}针"
+        return f"{self.raw_length}cm/{self.raw_count}针"
 
     def cal_staple(self):
         try:
